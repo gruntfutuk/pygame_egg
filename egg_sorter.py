@@ -1,4 +1,4 @@
-from enum import Enum
+from enum import Enum, auto
 from dataclasses import dataclass, field
 import pygame as py
 from random import choice
@@ -6,13 +6,13 @@ import logging
 from time import sleep
 
 class Colour(Enum):
-    red = 'red'
-    orange = 'orange'
-    yellow = 'yellow'
-    green = 'green'
-    sky = 'sky'
-    blue = 'blue'
-    purple = 'purple'
+    RED = auto()
+    ORANGE = auto()
+    YELLOW = auto()
+    GREEN = auto()
+    SKY = auto()
+    BLUE = auto()
+    PURPLE = auto()
 
 @dataclass
 class Egg:
@@ -23,7 +23,7 @@ class Egg:
     rect: list = field(default_factory=list)
 
     def __post_init__(self):
-        self.image = py.image.load(f"{self.name}egg.png")
+        self.image = py.image.load(f"{self.name.lower()}egg.png")
         for _ in range(2):
             self.egg.append(py.transform.scale(self.image, (150, 150)))
             self.rect.append(self.egg[-1].get_rect())
